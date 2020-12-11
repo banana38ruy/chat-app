@@ -24,7 +24,7 @@
          
          <option value="">チャットするユーザーを選択してください</option>
          <% User.where.not(id: current_user.id).each do |user| %>
-         <option value=><%= user.id %>><%= user.name %></option>
+         <option value=<%= user.id %>><%= user.name %></option>
          <% end %>
       </select>
        <%# type属性にhiddenを指定することで、画面上には表示されないinput要素を作成できる
