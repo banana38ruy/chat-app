@@ -1,6 +1,6 @@
 <div class="side-bar-header">
   <div class="header-name">
-    <a href="#">Tom</a>
+    <%= link_to current_user.name, edit_user_path(current_user) %> 
   </div>
   <div class="create-room">
     <a href="#">チャットを作成する</a>
@@ -19,3 +19,10 @@
     </div>
   </div>
 </div>
+<!-- １．rails routesコマンドを実行し、どのようなリンク先を指定すれば、
+該当のアクションが動くのかを確認する
+２、link_toのパスを、ログインしているユーザーの編集をするため
+edit_user_path(current_user)としている
+３，current_user.nameはログインしているユーザー名
+4, current_userはupdateで指定している>
+>
