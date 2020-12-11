@@ -5,7 +5,7 @@ class RoomsController < ApplicationController
       #form_withにわたす引数として、値が空のRoomインスタンスを
       #@roomに代入している
   def new
-    @room = Room.new #Room爆誕
+     @room = Room.new #Room爆誕
   end
 
 

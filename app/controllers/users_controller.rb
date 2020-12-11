@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     # redirect_to はルーティングからコントローラー通ってビューに表示されるおもてなし経路
     # render はビューに直帰させる ぶぶ漬け経路
     if current_user.update(user_params)
-      redirect_to root_path
+       redirect_to root_path
     else
       render :edit
     end  
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   #更新するユーザーのデータ（nameとemailを）をuserにつめこんで
   #上のアップデートに放り投げる
   def user_params
-    params.require(:user).permit(:name, :email)
+      params.require(:user).permit(:name, :email)
   end
 
 end
