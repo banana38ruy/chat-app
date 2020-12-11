@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-#ユーザー編集でやるアクションを定義する
+  #ユーザー編集でやるアクションを定義する
   def edit 
   end
 
