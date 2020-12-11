@@ -8,4 +8,7 @@ Rails.application.routes.draw do
    #resources :必要とする住所 これだとそのまま７つ付与
    #resources :必要とする住所, only: [:付与したいアクション, :付与したいアクション ]と記述する
   resources :users, only: [:edit, :update]
+  #新規チャットルームの作成で動くアクションはnewとcreateだから
+  #そして部屋ごとにresourcesは設定する
+  resources :rooms, only: [:new, :create]
 end
