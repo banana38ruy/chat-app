@@ -3,7 +3,7 @@
     <div class='account-page__inner--left account-page__header'>
       <h2>Edit Account</h2>
       <h5>アカウントの編集</h5>
-      <%= link_to "ログアウト", "#", class: 'btn'%>
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn'%>
       <%= link_to "チャットページに戻る", :back, class: 'btn'%>
     </div>
     <div class='account-page__inner--right user-form'>
@@ -31,3 +31,7 @@
     </div>
   </div>
 </div>
+<!-- 1,ユーザー編集画面からログアウトさせる場合,まずはrails.routesでパスを確認
+     2,/users/sign_outのdestroy_user_session_を見てそれにpathをつける ""はいらんよ
+     3,次にverb(メソッド)がDELETEになってるので指定する
+     4,すると、ログイン時に使用されるdeviseのsessionsコントローラーのdestroyアクションが実行される>
