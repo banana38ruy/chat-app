@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "messages#index"
+  #↓トップ画面を変更したい時原点に戻る時の場所を変えたらこのルートパスを変える 住所変更
+  root to: "rooms#index"
    #作成するコントローラーにアクションを定義する
    #基本的なアクションはCRUD
    #railsではそれを７つに分ける

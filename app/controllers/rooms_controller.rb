@@ -1,5 +1,9 @@
 class RoomsController < ApplicationController
-      
+  
+  def index
+      #トップ画面のindex（表示一覧）をする
+  end
+
       #コントローラーを作ったら
       #defでnewメソッド発動
       #@roomを定義する
