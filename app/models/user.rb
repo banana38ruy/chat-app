@@ -10,7 +10,10 @@ class User < ApplicationRecord
   # 送られるデータのあるモデルに着目する
   has_many :room_users
   has_many :rooms, through: :room_users
+  has_many :messages
+  # 設計書でアソシエーションを確認する際はそのモデルが何とつながるかを全部把握して記述すること
+  # 一人のユーザーは、複数のメッセージを送信できる
   # room_usersにたくさん触手をつきさす
-  # userはroom_usersのトンネルをくぐってroomsに突き刺して所有している
+  # userはroom_usersのトンネルをくぐってroomsに無数の触手を突き刺して組み合わせたデータをroom_usersで所有している
 end
 
