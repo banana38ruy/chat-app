@@ -3,21 +3,23 @@
     <%= link_to current_user.name, edit_user_path(current_user) %> 
   </div>
   <div class="create-room">
-    <a href="#">チャットを作成する</a>
+    <%= link_to "チャットを作成する", new_room_path %>
+     <%#rails routesで調べたprefixに _path をつけて住所とすること
+       / と "" は住所にはいらんよ  %>
   </div>
 </div>
 
 <div class="rooms">
-  <div class="room">
-    <div class="room-name">
-      <a href="#">techroom1</a>
+  <% current_user.rooms.each do |room| %>
+  <%# チャットルームは複数作成できるので、「eachメソッド」を
+    使って全てのチャットルームに対して同じ処理を繰り替えし実行する %>
+   <div class="room">
+     <div class="room-name">
+     <%# room-nameはroomsテーブルのカラム名となる %>
+      <a href="#"><%= room.name %>
     </div>
   </div>
-  <div class="room">
-    <div class="room-name">
-      <a href="#">techroom2</a>
-    </div>
-  </div>
+  <% end %>
 </div>
 <!-- １．rails routesコマンドを実行し、どのようなリンク先を指定すれば、
 該当のアクションが動くのかを確認する

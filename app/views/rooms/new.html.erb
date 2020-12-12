@@ -1,0 +1,56 @@
+<div class='chat-room-form'>
+  <h1>新規チャットルーム</h1>
+  <%=form_with model: @room, local: true do |f|%>
+    <div class='chat-room-form__field'>
+      <div class='chat-room-form__field--left'>
+        <%= f.label :チャットルーム名, class: 'chat-room-form__label'%>
+      </div>
+      <div class='chat-room-form__field--right'>
+        <%= f.text_field :name, class: 'chat__room_name chat-room-form__input', placeholder: 'チャットルーム名を入力してください'%>
+      </div>
+    </div>
+    <div class='chat-room-form__field'>
+    </div>
+    <div class='chat-room-form__field'>
+      <div class='chat-room-form__field--left'>
+        <label class='chat-room-form__label' for='chat_room_チャットメンバー'>チャットメンバー</label>
+      </div>
+      <div class='chat-room-form__field--right'>
+      <select name="room[user_ids][]">
+         <%# select要素のname属性にroom[user_ids][]を指定し、
+         option要素のvalue属性にuser.idを指定した
+         このように記述することで、これまでとは異なる形でパラメーターが送信されるため
+          paramsの中身は一つのキーに対して複数の値をうけとることができるようになる%>
+         
+         <option value="">チャットするユーザーを選択してください</option>
+         <% User.where.not(id: current_user.id).each do |user| %>
+         <option value=<%= user.id %>><%= user.name %></option>
+         <% end %>
+      </select>
+       <%# type属性にhiddenを指定することで、画面上には表示されないinput要素を作成できる
+       そして先程のselect要素と同様、name属性にroom[user_ibs][]を指定し、
+       room[user_ibs]をキーに対する値を配列で受け取る仕組み %>
+      <input name="room[user_ids][]" type="hidden" value=<%= current_user.id %>>
+       <%# <select></select>はプルダウンのようなセレクトボックスをつくる
+           
+           <option></option>はセレクトの中に記述することで選択肢になる
+            
+           each文で下のuser.nameレコード上の配列を上のブロックに送って順に表示させている
+            
+           さらにwhere("条件"）と記述すると条件に一致したレコードを配列として取得できる
+           このwhereメソッドに続けてnotメソッドを追記すると、
+           モデル名.where.not("条件"は、条件に一致したレコード以外の値を配列として取得できる
+           
+           したがって現在ログインしているユーザー以外の全てのレコードを取得できる%>
+                
+
+      </div>
+    </div>
+    <div class='chat-room-form__field'>
+      <div class='chat-room-form__field--left'></div>
+      <div class='chat-room-form__field--right'>
+        <%= f.submit class: 'chat-room-form__action-btn'%>
+      </div>
+    </div>
+  <% end %>
+</div>
