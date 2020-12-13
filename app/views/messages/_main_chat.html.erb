@@ -1,51 +1,49 @@
 <div class="chat-header">
   <div class="left-header">
     <div class="header-title">
-      hogefuga
+      <%= @room.name %>
+      <%# チャットルームに関する情報はapp/controllers/messages_controller.rbに格納されている 
+          チャットルーム名の情報はすでにコントローラーの@roomで取得できている%>
     </div>
   </div>
   <div class="right-header">
     <div class="header-button">
-      <a href="#">チャットを終了する</a>
+      <%# rails routes コマンドを実行すると、roomsコントローラーの
+      destroyアクションに対応するPrefixはroomなのでroom_pathとなる 
+      削除するチャットルームを区別するために定義している@roomを引数にし、
+      room_path(@room)と指定する
+      HTTPメソッドのdeleteを指定するとroomsコントローラーのdestroyアクションが実行される%>
+      <%= link_to "チャットを終了する", room_path(@room), method: :delete %>
+      <%# destroyアクションが実行されると、roomを削除できる
+      最後に、roomを削除したときに、そのroomに関連する情報も削除されるように設定する %>
     </div>
   </div>
 </div>
 
 <div class="messages">
-  <div class="message">
-    <div class="upper-message">
-      <div class="message-user">
-        Tom
-      </div>
-      <div class="message-date">
-        2020/3/31(Wed) 12:43:30
-      </div>
-    </div>
-    <div class="lower-message">
-      <div class="message-content">
-        おはよう
-      </div>
-    </div>
-  </div>
-
-  <div class="message">
-    <div class="upper-message">
-      <div class="message-user">
-        Tom
-      </div>
-      <div class="message-date">
-        2020/3/31(Wed) 12:47:30
-      </div>
-    </div>
-    <div class="lower-message">
-      <div class="message-content">
-        こんばんは
-      </div>
-    </div>
-  </div>
+  <%= render partial: 'message', collection: @messages %>
+  <%# このように記述することで、_message.html.erbを部分テンプレートとして
+   よみこむことができる %>
 </div>
+<%# form_withの引数に@roomと@messageの２つを渡している
+    これはmessagesのルーティングがroomsにネストされているため２つを指定することになっている
+    チャットルームとメッセージの間には、あるチャットルームに属している
+    メッセージという親子関係がある %>
+<%= form_with model: [@room, @message], class: 'form', local: true do |f| %>
+   <%# modelオプションに記述した@roomには 指定のチャットルームのレコード情報 、 @message にはMessageモデルからのインスタンスを
+    あらかじめセットしておく必要がある
+    次にこれらの変数をコントローラーのindexアクションで定義していく%>
+   <div class="form-input">
+    <%= f.text_field :content, class: 'form-message', placeholder: 'type a message' %>
+    <label class="form-image">
+      <span class="image-file">画像</span>
+      <%= f.file_field :image, class: 'hidden' %>
+    </label>
+   </div>
+   <%= f.submit '送信', class: 'form-submit' %>
+<% end %>   
 
-<div class="form">
+<!--<div class="form">
   <div class="form-input">
     <input class="form-message" placeholder= "type a message">
     <label class="form-image">

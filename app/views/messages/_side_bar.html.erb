@@ -14,17 +14,19 @@
   <%# チャットルームは複数作成できるので、「eachメソッド」を
     使って全てのチャットルームに対して同じ処理を繰り替えし実行する %>
    <div class="room">
-     <div class="room-name">
-     <%# room-nameはroomsテーブルのカラム名となる %>
-      <a href="#"><%= room.name %>
+      <div class="room-name">
+      <%# room-nameはroomsテーブルのカラム名となる %>
+        <%= link_to room.name, room_messages_path(room) %>
+        <%# room_messagesはURIが/rooms/:room_id/messagesとなっている これはメッセージに紐付いているチャットルームのidという意味
+          （room)はメッセージが紐付いてるチャットルームのidの引数である
+          それを引き渡している %>
+      </div>
     </div>
-  </div>
   <% end %>
 </div>
-<!-- １．rails routesコマンドを実行し、どのようなリンク先を指定すれば、
+<%# <!-- １．rails routesコマンドを実行し、どのようなリンク先を指定すれば、
 該当のアクションが動くのかを確認する
 ２、link_toのパスを、ログインしているユーザーの編集をするため
 edit_user_path(current_user)としている
 ３，current_user.nameはログインしているユーザー名
-4, current_userはupdateで指定している>
->
+4, current_userはupdateで指定している> %>
