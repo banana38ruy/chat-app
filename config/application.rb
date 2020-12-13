@@ -11,7 +11,7 @@ module ChatApp
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
     #時刻を設定する
-    config.i18h.defauld_locale = :ja
+    config.i18n.default_locale = :ja
     config.time_zone = 'Tokyo'
 
     # Settings in config/environments/* take precedence over those specified here.

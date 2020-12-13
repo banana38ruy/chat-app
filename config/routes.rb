@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   #新規チャットルームの作成で動くアクションはnewとcreateだから
   #そして部屋ごとにresourcesは設定する
   resources :rooms, only: [:new, :create] do
-    resources :messages, only: [:index,:create#,save]
+    resources :messages, only: [:index,:create]
     #メッセージ送信機能に必要なindexとcreateのルーティングを記述したい
     #メッセージを投稿する際には、どのルームで投稿されたメッセージなのかをパスから判断できるようにしたいので
     #ルーティングのネストを利用して記述している

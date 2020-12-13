@@ -17,16 +17,16 @@ class MessagesController < ApplicationController
     #チャットルームに紐付いている全てのメッセージ(@room.messages)を@messagesと定義する
     #一覧画面で表示するメッセージ情報には、ユーザー情報も紐付いて表示されてしまい（一本ずつ引きましょうねー）N＋１問題が勃発する
     #includes(:user)を記述することによって全てのメッセージ情報に紐づくユーザー情報に一度のアクセスでまとめて（そぉいっと）取得できる
-    end
    
   end
 
   def create
+    # binding.pry
     #messagesコントローラーにcreateアクションを定義する（保存のアクション）
     @room = Room.find(params[:room_id])#紐付いたIDを探したものをroomに代入
-    @msessage = @room.messages.new(message_params)#代入した@roomを@room.messages.newとしてインスタンスを生成し
+    @message = @room.messages.new(message_params)#代入した@roomを@room.messages.newとしてインスタンスを生成し
     #(message_params)を引数にして、privateメソッドを呼び出す
-    @message.save#まとめられた値をsaveで最後に記録する
+    # @message.save#まとめられた値をsaveで最後に記録する
     if @message.save
       #記録に成功したらmessagesコントローラーのindexアクションに再度リクエストを送信し、
       #新たにインスンタンス変数を生成する
@@ -40,6 +40,7 @@ class MessagesController < ApplicationController
       render :index
       #保存に失敗した場合はindexアクションのindex.html.erbを表示するように指定している
       #このとき、indexアクションのインスタンス変数はそのままindex.html.erbに渡され、同じページに戻る
+    end
   end
 
  
@@ -47,9 +48,10 @@ class MessagesController < ApplicationController
 
   private
 
-  def message-params
+  def message_params
     #privateメソッドとしてmessage_paramsを定義し、メッセージの内容
     #（content)をmessagesテーブルへ保存できるようにする
     #パラメーターの中にログインしているユーザーのidと紐付いている、メッセージの内容(contentを受け取るように許可する)
     params.require(:message).permit(:content).merge(user_id: current_user.id)
+  end
 end
