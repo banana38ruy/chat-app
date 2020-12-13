@@ -23,9 +23,22 @@
     <div class="message-content">
       <!-- 投稿したメッセージ内容を記述する -->
        <%= message.content %>
-       <%# messagesテーブルのcontentカラムから、
+       <%# messagesテーブルのcontentカラムから、   
        メッセージの内容を取得している %>
-
     </div>
+    <%= image_tag message.image.variant(resize: '500x500'), class: 'message-image' if message.image.attached? %> 
+  <%# image-tagはimg要素を生成するRailsのヘルパーメソッド
+      複雑なRailsnoディレクトリパスを指定しなくても、モデルから画像ファイルを
+      を呼び出して引数に記述するだけで、画像を表示するimg要素を生成する%>
+
+  <%# attached? はレコードにファイルが添付されているかどうかで、trueかfalseを返すメソッド  
+      if message.image.attached? と記述することで、画像が存在する場合のみ
+      image_tagが読み込まれるようになる%>
+  
+  <%# variantメソッドはActive Storageを導入している場合に使用可能なメソッド
+      幅x（アルファベットのｘ）高さで保存されている画像データを指定したサイズに変換し
+      その画像を返す
+      variantメソッドを使用した画像は、指定された横幅と
+      高さを超えるサイズにはならんよ%>
   </div>
 </div>
