@@ -16,7 +16,10 @@
    <div class="room">
      <div class="room-name">
      <%# room-nameはroomsテーブルのカラム名となる %>
-      <a href="#"><%= room.name %>
+      <%= link_to room.name, room_messages_path(room) %>
+      <%# room_messagesはURIが/rooms/:room_id/messagesとなっている これはメッセージに紐付いているチャットルームのidという意味
+          （room)はメッセージが紐付いてるチャットルームのidの引数である
+          それを引き渡している %>
     </div>
   </div>
   <% end %>
