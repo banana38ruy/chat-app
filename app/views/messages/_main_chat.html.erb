@@ -8,7 +8,14 @@
   </div>
   <div class="right-header">
     <div class="header-button">
-      <a href="#">チャットを終了する</a>
+      <%# rails routes コマンドを実行すると、roomsコントローラーの
+      destroyアクションに対応するPrefixはroomなのでroom_pathとなる 
+      削除するチャットルームを区別するために定義している@roomを引数にし、
+      room_path(@room)と指定する
+      HTTPメソッドのdeleteを指定するとroomsコントローラーのdestroyアクションが実行される%>
+      <%= link_to "チャットを終了する", room_path(@room), method: :delete %>
+      <%# destroyアクションが実行されると、roomを削除できる
+      最後に、roomを削除したときに、そのroomに関連する情報も削除されるように設定する %>
     </div>
   </div>
 </div>

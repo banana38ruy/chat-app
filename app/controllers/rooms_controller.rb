@@ -24,14 +24,30 @@ class RoomsController < ApplicationController
       render :new
       #失敗したらrenderメソッドでrooms/new.html.erbのページを表示
     end
-  end  
+  end 
+  
+  def destroy
+    room = Room.find(params[:id])
+    room.destroy
+    redirect_to root_path
  end
+ #roomsコントローラーにdestroyアクションを定義する
+ #どのチャットルームを削除するのかを特定する場合
+ #room.find(params[:id])を使用して、削除したいチャットルームの情報を取得する
 
+ #destroyアクションは、削除するだけなのでビューの表示は必要ない
+ #そのため、インスタンス変数ではなく変数としてroomを定義し
+ #destroyメソッドを使用する
+
+ #destoryメソッドが実行されたら、root(roomsのindex)に
+ #リダイレクトする記述をする
+ #次に、destroyアクションを動かすlink_toを_main_chat.html.erbに設定する
  private
 
- def room_params
-  params.require(:room).permit(:name, user_ids: [])
-  #この中に、user＿ids： ［］という記述がある
-  #このように、配列に対して保存を許可したい場合は、キーに対し[]を値として
-  #記述する
- end
+  def room_params
+    params.require(:room).permit(:name, user_ids: [])
+      #この中に、user＿ids： ［］という記述がある
+      #このように、配列に対して保存を許可したい場合は、キーに対し[]を値として
+      #記述する
+  end
+end

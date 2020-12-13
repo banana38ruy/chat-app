@@ -1,7 +1,10 @@
 class Room < ApplicationRecord
-  has_many :room_users
+  #MessageモデルとRoomモデルにdependent: :destroyを記述する
+  #room（親モデル）が削除されたときに関連付けしているMessage（小モデル）と
+  #RoomUser(小モデル)も削除される
+  has_many :room_users, dependent: :destroy
   has_many :users, through: :room_users
-  has_many :messages
+  has_many :messages, dependent: :destroy
   #設計図に記されていたのはmessagesだけがアソシエーションではない
   #各方面にどうつなぐのかを記述する
   #一つのチャットルームに、メッセージは複数存在する

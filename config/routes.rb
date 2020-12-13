@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :users, only: [:edit, :update]
   #新規チャットルームの作成で動くアクションはnewとcreateだから
   #そして部屋ごとにresourcesは設定する
-  resources :rooms, only: [:new, :create] do
+  resources :rooms, only: [:new, :create, :destroy] do
     resources :messages, only: [:index,:create]
     #メッセージ送信機能に必要なindexとcreateのルーティングを記述したい
     #メッセージを投稿する際には、どのルームで投稿されたメッセージなのかをパスから判断できるようにしたいので
@@ -19,5 +19,6 @@ Rails.application.routes.draw do
     #今回の場合、ネストすることにより、roomsが親 messagesが子 という親子関係になるので 
     #チャットルームに属しているメッセージという意味になる
     #設定したらrails routesでチャットルームのリンクを探す
- end
+    #roomのアクションにdestroyを加える
+  end
 end
