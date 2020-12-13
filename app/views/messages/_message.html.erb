@@ -10,10 +10,12 @@
     </div>
     <div class="message-date">
       <!-- 投稿した時刻を出力する -->
-      <%= message.created_at %>
+      <%= l message.created_at %>
     <%# messagesテーブルのcreated_atカラムから、投稿した
     時刻を取得している
-     しかし、現段階では日本基準の時刻ではない %>
+      l メソッドを使えば指定した現地時間に対応できる
+      configのapplicaton.rbで設定し
+      ja.ymlを開き変更内容を記述する %>
 
     </div>
   </div>
