@@ -1,0 +1,29 @@
+<div class="message">
+  <div class="upper-message">
+    <div class="message-user">
+      <!-- 投稿したユーザー名情報を出力する -->
+      <%= message.user.name %>
+      <%#全部にいえることだがsequel-proで確認すること番地を 
+      messagesテーブルのuser_idに紐付いてる
+      ユーザー名を、user.name.と記述することで取得 %>
+
+    </div>
+    <div class="message-date">
+      <!-- 投稿した時刻を出力する -->
+      <%= message.created_at %>
+    <%# messagesテーブルのcreated_atカラムから、投稿した
+    時刻を取得している
+     しかし、現段階では日本基準の時刻ではない %>
+
+    </div>
+  </div>
+  <div class="lower-message">
+    <div class="message-content">
+      <!-- 投稿したメッセージ内容を記述する -->
+       <%= message.content %>
+       <%# messagesテーブルのcontentカラムから、
+       メッセージの内容を取得している %>
+
+    </div>
+  </div>
+</div>

@@ -12,21 +12,10 @@
 </div>
 
 <div class="messages">
-  <div class="message">
-    <div class="upper-message">
-      <div class="message-user">
-        Tom
-      </div>
-      <div class="message-date">
-        2020/3/31(Wed) 12:43:30
-      </div>
-    </div>
-    <div class="lower-message">
-      <div class="message-content">
-        おはよう
-      </div>
-    </div>
-  </div>
+  <%= render partial: 'messsage', collection: @messages %>
+  <%# このように記述することで、_message.html.erbを部分テンプレートとして
+   よみこむことができる %>
+</div>
 <%# form_withの引数に@roomと@messageの２つを渡している
     これはmessagesのルーティングがroomsにネストされているため２つを指定することになっている
     チャットルームとメッセージの間には、あるチャットルームに属している
@@ -45,24 +34,7 @@
    <%= f.submit '送信', class: 'form-submit' %>
 <% end %>   
 
-  <div class="message">
-    <div class="upper-message">
-      <div class="message-user">
-        Tom
-      </div>
-      <div class="message-date">
-        2020/3/31(Wed) 12:47:30
-      </div>
-    </div>
-    <div class="lower-message">
-      <div class="message-content">
-        こんばんは
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="form">
+<!--<div class="form">
   <div class="form-input">
     <input class="form-message" placeholder= "type a message">
     <label class="form-image">
