@@ -1,7 +1,9 @@
 <div class="chat-header">
   <div class="left-header">
     <div class="header-title">
-      hogefuga
+      <%= @room.name %>
+      <%# チャットルームに関する情報はapp/controllers/messages_controller.rbに格納されている 
+          チャットルーム名の情報はすでにコントローラーの@roomで取得できている%>
     </div>
   </div>
   <div class="right-header">
