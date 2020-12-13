@@ -52,6 +52,7 @@ class MessagesController < ApplicationController
     #privateメソッドとしてmessage_paramsを定義し、メッセージの内容
     #（content)をmessagesテーブルへ保存できるようにする
     #パラメーターの中にログインしているユーザーのidと紐付いている、メッセージの内容(contentを受け取るように許可する)
-    params.require(:message).permit(:content).merge(user_id: current_user.id)
+    params.require(:message).permit(:content, :image).merge(user_id: current_user.id)
+    #imageをpermitすることで画像ファイルの保存を許可できる
   end
 end
